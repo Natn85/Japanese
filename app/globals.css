@@ -52,6 +52,20 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Hide the scrollbar everywhere while keeping scroll fully functional
+   (wheel, touch, keyboard, and dragging still work). */
+html {
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* legacy Edge / IE */
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;                /* Chrome, Safari, new Edge */
+}
+
 h1, h2, h3 {
   text-wrap: balance;
 }
