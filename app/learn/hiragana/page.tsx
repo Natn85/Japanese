@@ -34,11 +34,11 @@ export default function HiraganaPage() {
         <p className="text-accent text-sm font-medium mb-3">
           Writing System
         </p>
-        <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+        <h1 className="text-4xl sm:text-5xl font-bold text-ink mb-4">
           Hiragana{" "}
-          <span className="text-neutral-400 font-normal">ひらがな</span>
+          <span className="font-jp text-ink-muted font-normal">ひらがな</span>
         </h1>
-        <p className="text-neutral-300 text-base sm:text-lg leading-relaxed max-w-2xl">
+        <p className="text-ink-muted text-base sm:text-lg leading-relaxed max-w-2xl">
           Hiragana is the foundational phonetic alphabet of the Japanese writing
           system, consisting of 46 basic characters that each represent a
           distinct syllable sound. It is the first script every Japanese learner
@@ -51,7 +51,7 @@ export default function HiraganaPage() {
 
       {/* Character Grid */}
       <section>
-        <h2 className="text-xl font-semibold text-white mb-6">
+        <h2 className="text-xl font-semibold text-ink mb-6">
           All 46 Characters
         </h2>
         <div className="space-y-8">
@@ -60,7 +60,7 @@ export default function HiraganaPage() {
             if (!entries) return null;
             return (
               <div key={row}>
-                <h3 className="text-xs font-medium text-neutral-400 mb-3">
+                <h3 className="text-xs font-medium text-ink-muted mb-3">
                   {row}
                 </h3>
                 <div className="flex flex-wrap gap-3">
@@ -85,10 +85,10 @@ export default function HiraganaPage() {
 
       {/* Video */}
       <section>
-        <h2 className="text-xl font-semibold text-white mb-4">
+        <h2 className="text-xl font-semibold text-ink mb-4">
           Video Introduction
         </h2>
-        <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-neutral-700">
+        <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-border">
           <iframe
             src="https://www.youtube.com/embed/_wzcoX0WoUk"
             title="Hiragana introduction video"
@@ -101,7 +101,7 @@ export default function HiraganaPage() {
 
       {/* Resources */}
       <section>
-        <h2 className="text-xl font-semibold text-white mb-4">Resources</h2>
+        <h2 className="text-xl font-semibold text-ink mb-4">Resources</h2>
         <ul className="space-y-3">
           {resources.map((r) => (
             <li key={r.href}>
@@ -109,9 +109,9 @@ export default function HiraganaPage() {
                 href={r.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 hover:border-accent rounded-xl px-5 py-4 transition-[color,background-color,border-color,transform] duration-150 hover:-translate-y-px group"
+                className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 bg-surface hover:bg-surface-2 border border-border hover:border-accent rounded-xl px-5 py-4 transition-[color,background-color,border-color,transform] duration-150 hover:-translate-y-px group"
               >
-                <span className="text-accent group-hover:text-accent-light font-semibold text-sm whitespace-nowrap">
+                <span className="text-accent group-hover:text-accent-hover font-semibold text-sm whitespace-nowrap">
                   {r.label}
                   <span
                     aria-hidden="true"
@@ -119,7 +119,7 @@ export default function HiraganaPage() {
                   > ↗</span>
                   <span className="sr-only"> (opens in new tab)</span>
                 </span>
-                <span className="text-neutral-400 text-sm">{r.desc}</span>
+                <span className="text-ink-muted text-sm">{r.desc}</span>
               </a>
             </li>
           ))}
@@ -128,7 +128,7 @@ export default function HiraganaPage() {
 
       {/* Mark complete */}
       <section className="flex flex-col items-center gap-3 pb-4">
-        <p className="text-neutral-400 text-sm">
+        <p className="text-ink-muted text-sm">
           Finished studying? Mark this lesson as complete.
         </p>
         <MarkCompleteButton />
