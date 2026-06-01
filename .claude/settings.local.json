@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npx next *)",
+      "PowerShell($env:NODE_OPTIONS)",
+      "Bash(printenv NODE_OPTIONS)",
+      "Bash(printenv)",
+      "Bash(npm config *)",
+      "Read(//c/Users/dnatn/**)",
+      "Bash(node *)",
+      "WebFetch(domain:github.com)",
+      "Bash(rm -rf /tmp/uiuxpromax)",
+      "Bash(git clone *)",
+      "Bash(python design_system.py --help)",
+      "Bash(py --version)",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(pkill -f \"next-server\")",
+      "Bash(npm run *)",
+      "Bash(echo \"restarting dev \\(pid $!\\)\")",
+      "Bash(grep -q \"Ready in\" /tmp/nihongo-dev.log)",
+      "Bash(git rm *)",
+      "Bash(git add *)",
+      "Bash(git checkout *)",
+      "Bash(git commit -q -m 'Initial commit *)",
+      "Bash(git branch *)",
+      "Bash(git check-ignore *)",
+      "Bash(xxd .gitignore)",
+      "Bash(git commit -q --amend -m 'Initial commit *)"
+    ]
+  }
+}

@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Washi & Vermilion — warm Japanese-inspired palette.
+  Light  = washi paper. Dark = sumi ink. Accent = vermilion (朱色).
+  Colors are stored as space-separated RGB channels so Tailwind's
+  alpha modifiers (text-accent/10, bg-bg/80, ...) resolve correctly.
+  The app renders dark by default (<html class="dark">); both modes are
+  defined so a future theme toggle works with no extra work.
+*/
+
+:root {
+  /* Light — warm washi paper */
+  --bg: 250 246 239;
+  --surface: 243 236 224;
+  --surface-2: 235 225 209;
+  --border: 221 208 187;
+  --ink: 33 28 22;
+  --muted: 111 101 87;
+  --accent: 201 68 47;        /* vermilion, deep enough for white text AA */
+  --accent-hover: 173 56 38;
+  --accent-on: 255 255 255;   /* text that sits on the accent fill */
+  --accent-soft: rgb(201 68 47 / 0.10);
+
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --font-jp: var(--font-sans), "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+    "Yu Gothic", "Yu Gothic UI", "Noto Sans JP", Meiryo, sans-serif;
+}
+
+.dark {
+  /* Dark — warm sumi ink (not the cold #0f0f0f it replaces) */
+  --bg: 24 20 16;
+  --surface: 34 29 23;
+  --surface-2: 44 38 32;
+  --border: 58 50 42;
+  --ink: 244 236 224;
+  --muted: 179 166 149;
+  --accent: 226 83 61;        /* brighter vermilion reads well on dark */
+  --accent-hover: 239 106 85;
+  --accent-on: 24 20 16;      /* dark ink on the bright-vermilion fill */
+  --accent-soft: rgb(226 83 61 / 0.14);
+}
+
+body {
+  background-color: rgb(var(--bg));
+  color: rgb(var(--ink));
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+.font-jp {
+  font-family: var(--font-jp);
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
+/* ── Navbar mobile menu ── */
+@keyframes menuIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-menu-in {
+  animation: menuIn 150ms var(--ease-out-quart);
+}
+
+/* ── Kana card stagger (used on learn pages) ── */
+@keyframes cardIn {
+  from { opacity: 0; transform: scale(0.88); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.animate-card-in {
+  animation: cardIn 350ms var(--ease-out-quart) both;
+  animation-delay: calc(var(--card-i, 0) * 40ms);
+}
+
+/* ── Success pulse (MarkCompleteButton) ── */
+@keyframes successPulse {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+.animate-success-pulse {
+  animation: successPulse 400ms var(--ease-out-quart) forwards;
+}
+
+/* ── Slow drift for the decorative hero kana ── */
+@keyframes kanaDrift {
+  from { transform: translateY(0) rotate(var(--k-rot, 0deg)); }
+  to   { transform: translateY(-14px) rotate(var(--k-rot, 0deg)); }
+}
+.animate-kana-drift {
+  animation: kanaDrift var(--k-dur, 9s) var(--ease-out-quart) infinite alternate;
+}
+
+/* ── Reduced motion: neutralise everything ── */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
