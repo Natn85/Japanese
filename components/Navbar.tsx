@@ -11,6 +11,7 @@ const learnLinks = [
   { label: "Kanji", href: "/learn/kanji" },
   { label: "Grammar", href: "/learn/grammar" },
   { label: "Flashcards", href: "/flashcards" },
+  { label: "Pronounce", href: "/pronounce" },
   { label: "Community", href: "/community" },
 ];
 

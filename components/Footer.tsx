@@ -14,6 +14,7 @@ const columns = [
     title: "Practice",
     links: [
       { label: "Flashcards", href: "/flashcards" },
+      { label: "Pronounce", href: "/pronounce" },
       { label: "Dashboard", href: "/dashboard" },
       { label: "Community", href: "/community" },
     ],
