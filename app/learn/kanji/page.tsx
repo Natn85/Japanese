@@ -12,7 +12,7 @@ const resources = [
   {
     label: "Jisho Dictionary",
     href: "https://jisho.org/",
-    desc: "The go-to online Japanese dictionary—look up any kanji to see its readings, meanings, stroke order, and example words.",
+    desc: "The go-to online Japanese dictionary. Look up any kanji to see its readings, meanings, stroke order, and example words.",
   },
   {
     label: "Tofugu: Learn Kanji",
@@ -42,7 +42,7 @@ export default function KanjiPage() {
           Kanji are the logographic characters borrowed from Chinese, where each
           symbol carries a meaning rather than a single sound. There are
           thousands in total, but everyday literacy rests on the 2,136 jōyō
-          (&ldquo;common use&rdquo;) kanji—and you don&apos;t learn them all at
+          (&ldquo;common use&rdquo;) kanji, and you don&apos;t learn them all at
           once. Start with the most fundamental characters below, learn them in
           small sets, and lean on spaced repetition. Unlike the kana, kanji is a
           long game measured in months and years, so the goal here is simply to
@@ -66,7 +66,7 @@ export default function KanjiPage() {
             is the native Japanese reading, shown in{" "}
             <span className="font-jp text-ink">ひらがな</span> and used when the
             kanji stands on its own. A trailing part in parentheses, like{" "}
-            <span className="font-jp text-ink">おお(きい)</span>, is okurigana—the
+            <span className="font-jp text-ink">おお(きい)</span>, is okurigana, the
             hiragana written after the kanji. Don&apos;t memorize every reading
             up front; they&apos;ll stick naturally as you meet real words.
           </p>
@@ -114,7 +114,7 @@ export default function KanjiPage() {
         </h2>
         <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-border">
           <iframe
-            src="https://www.youtube.com/embed/9F5lLgUMfFc"
+            src="https://www.youtube.com/embed/RKWrWRFyfYo"
             title="Kanji introduction video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
@@ -155,7 +155,7 @@ export default function KanjiPage() {
         <p className="text-ink-muted text-sm">
           Finished studying? Mark this lesson as complete.
         </p>
-        <MarkCompleteButton />
+        <MarkCompleteButton lessonId="kanji" />
       </section>
 
     </div>

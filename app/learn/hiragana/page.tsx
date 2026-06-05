@@ -43,7 +43,7 @@ export default function HiraganaPage() {
           system, consisting of 46 basic characters that each represent a
           distinct syllable sound. It is the first script every Japanese learner
           should master, since it appears in grammar particles, verb endings, and
-          children&apos;s books—building the reading intuition you need for
+          children&apos;s books, building the reading intuition you need for
           everything that follows. With focused practice, most learners can read
           all 46 characters fluently within one to two weeks.
         </p>
@@ -90,7 +90,7 @@ export default function HiraganaPage() {
         </h2>
         <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-border">
           <iframe
-            src="https://www.youtube.com/embed/_wzcoX0WoUk"
+            src="https://www.youtube.com/embed/6p9Il_j0zjc"
             title="Hiragana introduction video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
@@ -131,7 +131,7 @@ export default function HiraganaPage() {
         <p className="text-ink-muted text-sm">
           Finished studying? Mark this lesson as complete.
         </p>
-        <MarkCompleteButton />
+        <MarkCompleteButton lessonId="hiragana" />
       </section>
 
     </div>

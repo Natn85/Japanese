@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 // Friendly geometric sans for all Latin UI. Japanese glyphs fall back to the
 // high-quality native system stack defined in globals.css (--font-jp).
@@ -13,9 +14,9 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Nihongo Hub — Learn Japanese, together",
+  title: "Japanara: Learn Japanese, one character at a time",
   description:
-    "Guided lessons in hiragana, katakana, kanji, and grammar that make every step feel doable.",
+    "Guided lessons in hiragana, katakana, kanji, and grammar that make every step feel doable. Free, no account required.",
 };
 
 export default function RootLayout({
@@ -28,6 +29,7 @@ export default function RootLayout({
       <body>
         <Navbar />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

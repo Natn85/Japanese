@@ -131,7 +131,7 @@ export default function KatakanaPage() {
         <p className="text-ink-muted text-sm">
           Finished studying? Mark this lesson as complete.
         </p>
-        <MarkCompleteButton />
+        <MarkCompleteButton lessonId="katakana" />
       </section>
 
     </div>

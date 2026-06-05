@@ -10,7 +10,7 @@ Japanese learners at every stage, from complete beginners to intermediate and ad
 
 ## Product Purpose
 
-Nihongo Hub is a structured Japanese learning platform covering hiragana, katakana, kanji, grammar, and vocabulary via flashcards and guided lessons. Success looks like a learner who completes each module feeling capable and moving forward.
+Japanara is a structured Japanese learning platform covering hiragana, katakana, kanji, grammar, and vocabulary via flashcards and guided lessons. Success looks like a learner who completes each module feeling capable and moving forward.
 
 ## Brand Personality
 
