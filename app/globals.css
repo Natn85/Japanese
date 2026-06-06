@@ -29,6 +29,31 @@
 
   --font-jp: var(--font-sans), "Hiragino Kaku Gothic ProN", "Hiragino Sans",
     "Yu Gothic", "Yu Gothic UI", "Noto Sans JP", Meiryo, sans-serif;
+
+  /*
+    Section override tokens — let the navbar and main page be themed
+    independently of the global palette (see /customize). Each defaults to
+    the matching global token, so an un-customized site stays consistent.
+    They are referenced through dedicated Tailwind utilities (nav-*, page-*)
+    rather than by shadowing the base tokens, which avoids a var() cycle.
+  */
+  --nav-bg: var(--bg);
+  --nav-surface: var(--surface);
+  --nav-surface-2: var(--surface-2);
+  --nav-border: var(--border);
+  --nav-ink: var(--ink);
+  --nav-muted: var(--muted);
+  --nav-accent: var(--accent);
+  --nav-accent-hover: var(--accent-hover);
+  --nav-accent-on: var(--accent-on);
+  --nav-accent-soft: var(--accent-soft);
+
+  --page-bg: var(--bg);
+  --page-surface: var(--surface);
+  --page-accent: var(--accent);
+  --page-accent-hover: var(--accent-hover);
+  --page-accent-on: var(--accent-on);
+  --page-accent-soft: var(--accent-soft);
 }
 
 .dark {

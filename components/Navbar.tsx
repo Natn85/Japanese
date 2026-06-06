@@ -13,16 +13,18 @@ const learnLinks = [
   { label: "Flashcards", href: "/flashcards" },
   { label: "Pronounce", href: "/pronounce" },
   { label: "Community", href: "/community" },
+  { label: "Customize", href: "/customize" },
 ];
 
 function Wordmark() {
   return (
     <Link href="/" className="group flex items-center gap-2.5" aria-label="Japanara home">
-      <span className="font-jp grid h-8 w-8 place-items-center rounded-lg bg-accent text-lg font-bold leading-none text-accent-on transition-transform duration-200 group-hover:-rotate-6">
+      {/* White tile, red Japanese sign — the white + vermilion brand lockup. */}
+      <span className="font-jp grid h-8 w-8 place-items-center rounded-lg bg-white text-lg font-bold leading-none text-nav-accent ring-1 ring-nav-accent/25 transition-transform duration-200 group-hover:-rotate-6">
         な
       </span>
-      <span className="text-lg font-bold tracking-tight text-ink">
-        Japan<span className="text-accent">ara</span>
+      <span className="text-lg font-bold tracking-tight text-nav-ink">
+        Japan<span className="text-nav-accent">ara</span>
       </span>
     </Link>
   );
@@ -36,12 +38,12 @@ export default function Navbar() {
   const linkClass = (href: string) =>
     `rounded-lg px-3 py-1.5 text-sm transition-colors ${
       pathname === href
-        ? "bg-surface-2 font-medium text-ink"
-        : "text-ink-muted hover:bg-surface hover:text-ink"
+        ? "bg-nav-surface-2 font-medium text-nav-ink"
+        : "text-nav-ink-muted hover:bg-nav-surface hover:text-nav-ink"
     }`;
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-border bg-bg/80 backdrop-blur-md">
+    <nav className="sticky top-0 z-50 border-b border-nav-border bg-nav-bg/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         <Wordmark />
 
@@ -67,13 +69,13 @@ export default function Navbar() {
             aria-current={pathname === "/dashboard" ? "page" : undefined}
             className={`inline-flex items-center gap-2 rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors ${
               pathname === "/dashboard"
-                ? "border-accent bg-accent-soft text-accent"
-                : "border-border text-ink hover:border-accent hover:text-accent"
+                ? "border-nav-accent bg-nav-accent-soft text-nav-accent"
+                : "border-nav-border text-nav-ink hover:border-nav-accent hover:text-nav-accent"
             }`}
           >
             Dashboard
             {hydrated && (
-              <span className="font-jp tabular-nums rounded-md bg-accent/15 px-1.5 py-0.5 text-xs text-accent">
+              <span className="font-jp tabular-nums rounded-md bg-nav-accent/15 px-1.5 py-0.5 text-xs text-nav-accent">
                 {count}/{total}
               </span>
             )}
@@ -82,7 +84,7 @@ export default function Navbar() {
 
         {/* Hamburger */}
         <button
-          className="flex min-h-[44px] min-w-[44px] flex-col items-center justify-center gap-1 rounded-lg p-3 text-ink-muted transition-colors hover:text-ink lg:hidden"
+          className="flex min-h-[44px] min-w-[44px] flex-col items-center justify-center gap-1 rounded-lg p-3 text-nav-ink-muted transition-colors hover:text-nav-ink lg:hidden"
           onClick={() => setOpen((o) => !o)}
           aria-label="Toggle menu"
           aria-expanded={open}
@@ -98,7 +100,7 @@ export default function Navbar() {
       {open && (
         <div
           id="mobile-menu"
-          className="animate-menu-in border-t border-border bg-bg px-4 pb-4 lg:hidden"
+          className="animate-menu-in border-t border-nav-border bg-nav-bg px-4 pb-4 lg:hidden"
         >
           <ul className="flex flex-col gap-1 pt-2">
             {[...learnLinks, { label: "Dashboard", href: "/dashboard" }].map((l) => (
@@ -109,8 +111,8 @@ export default function Navbar() {
                   aria-current={pathname === l.href ? "page" : undefined}
                   className={`block rounded-lg px-3 py-2.5 text-sm transition-colors ${
                     pathname === l.href
-                      ? "bg-surface-2 font-medium text-ink"
-                      : "text-ink-muted hover:bg-surface hover:text-ink"
+                      ? "bg-nav-surface-2 font-medium text-nav-ink"
+                      : "text-nav-ink-muted hover:bg-nav-surface hover:text-nav-ink"
                   }`}
                 >
                   {l.label}

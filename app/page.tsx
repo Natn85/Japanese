@@ -62,7 +62,7 @@ export default function Home() {
   };
 
   return (
-    <>
+    <div className="bg-page-bg">
       {/* ── Hero ── */}
       <section className="relative isolate overflow-hidden">
         <div
@@ -70,14 +70,14 @@ export default function Home() {
           className="pointer-events-none absolute inset-0 -z-10"
           style={{
             background:
-              "radial-gradient(120% 70% at 50% -10%, var(--accent-soft), transparent 60%)",
+              "radial-gradient(120% 70% at 50% -10%, var(--page-accent-soft), transparent 60%)",
           }}
         />
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 hidden md:block">
           {floaters.map((f, i) => (
             <span
               key={i}
-              className="font-jp absolute select-none text-accent/20 animate-kana-drift"
+              className="font-jp absolute select-none text-page-accent/20 animate-kana-drift"
               style={{
                 top: f.top,
                 left: f.left,
@@ -101,7 +101,7 @@ export default function Home() {
         >
           <motion.p
             variants={item}
-            className="font-jp mb-5 text-sm font-medium tracking-wide text-accent"
+            className="font-jp mb-5 text-sm font-medium tracking-wide text-page-accent"
           >
             日本語を学ぼう
           </motion.p>
@@ -126,7 +126,7 @@ export default function Home() {
             <motion.div whileHover={reduce ? undefined : { y: -2 }} whileTap={{ scale: 0.97 }}>
               <Link
                 href="/learn/hiragana"
-                className="inline-flex items-center gap-2 rounded-xl bg-accent px-7 py-3.5 text-base font-semibold text-accent-on shadow-sm transition-colors duration-150 hover:bg-accent-hover"
+                className="inline-flex items-center gap-2 rounded-xl bg-page-accent px-7 py-3.5 text-base font-semibold text-page-accent-on shadow-sm transition-colors duration-150 hover:bg-page-accent-hover"
               >
                 {hydrated && count > 0 ? "Keep going" : "Start with Hiragana"}
                 <span aria-hidden>→</span>
@@ -178,16 +178,16 @@ export default function Home() {
               >
                 <Link
                   href={t.href}
-                  className={`group relative flex h-full min-h-[180px] flex-col justify-between overflow-hidden rounded-2xl border p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent ${
-                    featured[t.id] ? "bg-accent-soft" : "bg-surface"
-                  } ${done ? "border-accent/50" : "border-border"}`}
+                  className={`group relative flex h-full min-h-[180px] flex-col justify-between overflow-hidden rounded-2xl border p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-page-accent ${
+                    featured[t.id] ? "bg-page-accent-soft" : "bg-page-surface"
+                  } ${done ? "border-page-accent/50" : "border-border"}`}
                 >
                   {done && (
-                    <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-accent px-2.5 py-1 text-xs font-semibold text-accent-on">
+                    <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-page-accent px-2.5 py-1 text-xs font-semibold text-page-accent-on">
                       ✓ Done
                     </span>
                   )}
-                  <div className="font-jp text-4xl font-medium tracking-wide text-ink transition-colors duration-200 group-hover:text-accent sm:text-5xl">
+                  <div className="font-jp text-4xl font-medium tracking-wide text-ink transition-colors duration-200 group-hover:text-page-accent sm:text-5xl">
                     {glyphStrip[t.id]}
                   </div>
                   <div className="relative mt-6">
@@ -198,7 +198,7 @@ export default function Home() {
                     <p className="mt-1 max-w-sm text-sm leading-relaxed text-ink-muted">
                       {t.blurb}
                     </p>
-                    <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-accent">
+                    <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-page-accent">
                       {done ? "Review" : "Begin"}
                       <span
                         aria-hidden
@@ -216,16 +216,16 @@ export default function Home() {
       </section>
 
       {/* ── How it works (numbered steps, distinct layout family) ── */}
-      <section className="border-y border-border bg-surface/40">
+      <section className="border-y border-border bg-page-surface/40">
         <div className="mx-auto max-w-5xl px-4 py-20">
           <h2 className="max-w-2xl text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
             A loop that keeps you moving.
           </h2>
           <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-3">
             {steps.map((s) => (
-              <div key={s.n} className="bg-bg p-7">
+              <div key={s.n} className="bg-page-bg p-7">
                 <div className="flex items-baseline justify-between">
-                  <span className="font-jp tabular-nums text-3xl font-bold text-accent/30">
+                  <span className="font-jp tabular-nums text-3xl font-bold text-page-accent/30">
                     {s.n}
                   </span>
                   <span className="font-jp text-lg text-ink-muted">{s.jp}</span>
@@ -242,7 +242,7 @@ export default function Home() {
 
       {/* ── Closing CTA ── */}
       <section className="mx-auto max-w-3xl px-4 py-24 text-center">
-        <p className="font-jp text-5xl text-accent/80 sm:text-6xl">はじめよう</p>
+        <p className="font-jp text-5xl text-page-accent/80 sm:text-6xl">はじめよう</p>
         <h2 className="mt-6 text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
           The first character is the hardest. Let&apos;s get past it together.
         </h2>
@@ -256,6 +256,6 @@ export default function Home() {
           </Link>
         </div>
       </section>
-    </>
+    </div>
   );
 }
