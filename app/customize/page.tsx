@@ -2,14 +2,18 @@
 
 import { useState } from "react";
 import ColorField from "@/components/ColorField";
+import { NavPreview, PagePreview, SitePreview } from "@/components/ThemePreview";
 import { normalizeHex, useTheme, type ThemeValues } from "@/lib/theme";
 
 /*
   Theme customizer. Every control writes to the shared theme store
   (lib/theme.ts), which applies the change to <html> live and saves it to
-  the learner's device. Three groups can be themed independently: the whole
-  site, just the navbar, and just the main page.
+  the learner's device. Three surfaces can be themed independently, and each
+  one carries a live preview that mirrors the real thing, so a learner sees
+  exactly what a color does the moment they pick it.
 */
+
+type PreviewKind = "site" | "nav" | "page";
 
 interface TokenSpec {
   key: string;
@@ -23,6 +27,7 @@ interface Section {
   title: string;
   jp: string;
   blurb: string;
+  preview: PreviewKind;
   tokens: TokenSpec[];
 }
 
@@ -31,6 +36,7 @@ const SECTIONS: Section[] = [
     title: "Whole site",
     jp: "全体",
     blurb: "The base palette every page inherits.",
+    preview: "site",
     tokens: [
       { key: "bg", label: "Background", description: "The page backdrop.", default: "#181410" },
       { key: "surface", label: "Cards & panels", default: "#221d17" },
@@ -49,7 +55,8 @@ const SECTIONS: Section[] = [
   {
     title: "Navigation bar",
     jp: "ナビ",
-    blurb: "Style the top bar and logo on their own.",
+    blurb: "The top bar and logo, styled on their own.",
+    preview: "nav",
     tokens: [
       { key: "nav-bg", label: "Nav background", default: "#181410" },
       { key: "nav-ink", label: "Nav text", default: "#f4ece0" },
@@ -64,7 +71,8 @@ const SECTIONS: Section[] = [
   {
     title: "Main page",
     jp: "ホーム",
-    blurb: "The home page hero and cards, independent of the rest.",
+    blurb: "The home hero and cards, independent of the rest.",
+    preview: "page",
     tokens: [
       { key: "page-bg", label: "Page background", default: "#181410" },
       {
@@ -125,6 +133,12 @@ const PRESETS: Preset[] = [
   },
 ];
 
+function Preview({ kind, pulseKey }: { kind: PreviewKind; pulseKey: string }) {
+  if (kind === "nav") return <NavPreview pulseKey={pulseKey} />;
+  if (kind === "page") return <PagePreview pulseKey={pulseKey} />;
+  return <SitePreview pulseKey={pulseKey} />;
+}
+
 export default function CustomizePage() {
   const { values, hydrated, setColor, resetColor, applyPreset, resetAll } = useTheme();
   const [confirmReset, setConfirmReset] = useState(false);
@@ -152,8 +166,9 @@ export default function CustomizePage() {
           Make it yours.
         </h1>
         <p className="mt-3 max-w-xl text-base leading-relaxed text-ink-muted">
-          Pick from a swatch, drag the color wheel, or paste an exact hex code.
-          Changes apply instantly and save to this device. No account needed.
+          Tap a swatch, drag the color wheel, lift a color off your screen, or
+          paste a hex code. The previews update as you go, and your theme saves
+          to this device. No account needed.
         </p>
       </div>
 
@@ -184,7 +199,8 @@ export default function CustomizePage() {
                 key={p.name}
                 type="button"
                 onClick={() => (p.values === null ? resetAll() : applyPreset(p.values))}
-                className={`inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-sm font-medium transition-colors ${
+                aria-pressed={active}
+                className={`inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-sm font-medium transition-all duration-150 hover:-translate-y-px active:translate-y-0 active:scale-[0.97] ${
                   active
                     ? "border-accent bg-accent-soft text-accent"
                     : "border-border text-ink hover:border-accent"
@@ -201,7 +217,7 @@ export default function CustomizePage() {
         </div>
 
         {confirmReset && (
-          <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-accent/40 bg-accent-soft px-4 py-3">
+          <div className="animate-menu-in mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-accent/40 bg-accent-soft px-4 py-3">
             <p className="text-sm text-ink">
               Reset all {customCount} customized color{customCount === 1 ? "" : "s"} to
               the Japanara defaults?
@@ -220,7 +236,7 @@ export default function CustomizePage() {
                   resetAll();
                   setConfirmReset(false);
                 }}
-                className="rounded-lg bg-accent px-3 py-1.5 text-sm font-semibold text-accent-on hover:bg-accent-hover"
+                className="rounded-lg bg-accent px-3 py-1.5 text-sm font-semibold text-accent-on hover:bg-accent-hover active:scale-95"
               >
                 Reset
               </button>
@@ -229,39 +245,48 @@ export default function CustomizePage() {
         )}
       </section>
 
-      {/* Sections */}
+      {/* Sections — each pairs a live preview with its controls */}
       <div className="space-y-6">
-        {SECTIONS.map((section) => (
-          <section
-            key={section.title}
-            className="rounded-2xl border border-border bg-surface p-5 sm:p-6"
-          >
-            <div className="mb-2 flex items-baseline gap-3 border-b border-border pb-4">
-              <span className="font-jp text-xl text-accent">{section.jp}</span>
-              <div>
-                <h2 className="text-base font-semibold text-ink">{section.title}</h2>
-                <p className="mt-0.5 text-xs text-ink-muted">{section.blurb}</p>
+        {SECTIONS.map((section) => {
+          // Identity changes only when a color in THIS group changes, which
+          // replays the pop on the preview's hero glyph.
+          const pulseKey = section.tokens.map((t) => values[t.key] ?? "_").join("|");
+          return (
+            <section
+              key={section.title}
+              className="rounded-2xl border border-border bg-surface"
+            >
+              <div className="border-b border-border p-5">
+                <div className="mb-4 flex items-baseline gap-3">
+                  <span className="font-jp text-xl text-accent">{section.jp}</span>
+                  <div>
+                    <h2 className="text-base font-semibold text-ink">{section.title}</h2>
+                    <p className="mt-0.5 text-xs text-ink-muted">{section.blurb}</p>
+                  </div>
+                </div>
+                <Preview kind={section.preview} pulseKey={hydrated ? pulseKey : "_"} />
               </div>
-            </div>
-            <div className="divide-y divide-border">
-              {section.tokens.map((t) => {
-                const isCustom = hydrated && t.key in values;
-                const value = (isCustom ? values[t.key] : t.default).toLowerCase();
-                return (
-                  <ColorField
-                    key={t.key}
-                    label={t.label}
-                    description={t.description}
-                    value={value}
-                    isCustom={!!isCustom}
-                    onChange={(hex) => setColor(t.key, hex)}
-                    onReset={() => resetColor(t.key)}
-                  />
-                );
-              })}
-            </div>
-          </section>
-        ))}
+
+              <div className="divide-y divide-border px-5 py-1">
+                {section.tokens.map((t) => {
+                  const isCustom = hydrated && t.key in values;
+                  const value = (isCustom ? values[t.key] : t.default).toLowerCase();
+                  return (
+                    <ColorField
+                      key={t.key}
+                      label={t.label}
+                      description={t.description}
+                      value={value}
+                      isCustom={!!isCustom}
+                      onChange={(hex) => setColor(t.key, hex)}
+                      onReset={() => resetColor(t.key)}
+                    />
+                  );
+                })}
+              </div>
+            </section>
+          );
+        })}
       </div>
 
       <p className="mt-8 text-center text-xs text-ink-muted">

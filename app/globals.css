@@ -138,6 +138,16 @@ h1, h2, h3 {
   animation: successPulse 400ms var(--ease-out-quart) forwards;
 }
 
+/* ── Swatch pop (ColorField + theme previews react to a new color) ── */
+@keyframes swatchPop {
+  0%   { transform: scale(0.8); }
+  55%  { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+.animate-swatch-pop {
+  animation: swatchPop 320ms var(--ease-out-quart) both;
+}
+
 /* ── Slow drift for the decorative hero kana ── */
 @keyframes kanaDrift {
   from { transform: translateY(0) rotate(var(--k-rot, 0deg)); }
