@@ -13,8 +13,39 @@ const learnLinks = [
   { label: "Flashcards", href: "/flashcards" },
   { label: "Pronounce", href: "/pronounce" },
   { label: "Community", href: "/community" },
-  { label: "Customize", href: "/customize" },
 ];
+
+function CustomizeButton({ active }: { active: boolean }) {
+  return (
+    <Link
+      href="/customize"
+      aria-current={active ? "page" : undefined}
+      aria-label="Customize theme"
+      title="Customize theme"
+      className={`inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg border transition-colors ${
+        active
+          ? "border-nav-accent bg-nav-accent-soft text-nav-accent"
+          : "border-nav-border text-nav-ink-muted hover:border-nav-accent hover:text-nav-accent"
+      }`}
+    >
+      {/* Pencil — edit/customize */}
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M12 20h9" />
+        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z" />
+      </svg>
+    </Link>
+  );
+}
 
 function Wordmark() {
   return (
@@ -62,12 +93,15 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Dashboard pill (desktop) — the personal progress hub, set apart */}
-        <div className="hidden items-center gap-3 lg:flex">
+        {/* Right cluster: customize (always), dashboard (desktop), hamburger (mobile) */}
+        <div className="flex items-center gap-3">
+          <CustomizeButton active={pathname === "/customize"} />
+
+          {/* Dashboard pill (desktop) — the personal progress hub, set apart */}
           <Link
             href="/dashboard"
             aria-current={pathname === "/dashboard" ? "page" : undefined}
-            className={`inline-flex items-center gap-2 rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors ${
+            className={`hidden items-center gap-2 rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors lg:inline-flex ${
               pathname === "/dashboard"
                 ? "border-nav-accent bg-nav-accent-soft text-nav-accent"
                 : "border-nav-border text-nav-ink hover:border-nav-accent hover:text-nav-accent"
@@ -80,20 +114,20 @@ export default function Navbar() {
               </span>
             )}
           </Link>
-        </div>
 
-        {/* Hamburger */}
-        <button
-          className="flex min-h-[44px] min-w-[44px] flex-col items-center justify-center gap-1 rounded-lg p-3 text-nav-ink-muted transition-colors hover:text-nav-ink lg:hidden"
-          onClick={() => setOpen((o) => !o)}
-          aria-label="Toggle menu"
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-        >
-          <span className="block h-0.5 w-5 bg-current" />
-          <span className="block h-0.5 w-5 bg-current" />
-          <span className="block h-0.5 w-5 bg-current" />
-        </button>
+          {/* Hamburger */}
+          <button
+            className="flex min-h-[44px] min-w-[44px] flex-col items-center justify-center gap-1 rounded-lg p-3 text-nav-ink-muted transition-colors hover:text-nav-ink lg:hidden"
+            onClick={() => setOpen((o) => !o)}
+            aria-label="Toggle menu"
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+          >
+            <span className="block h-0.5 w-5 bg-current" />
+            <span className="block h-0.5 w-5 bg-current" />
+            <span className="block h-0.5 w-5 bg-current" />
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
