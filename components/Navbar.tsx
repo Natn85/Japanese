@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useProgress } from "@/lib/progress";
 
 const learnLinks = [
@@ -51,7 +51,11 @@ function Wordmark() {
   return (
     <Link href="/" className="group flex items-center gap-2.5" aria-label="Japanara home">
       {/* White tile, red Japanese sign — the white + vermilion brand lockup. */}
-      <span className="font-jp grid h-8 w-8 place-items-center rounded-lg bg-white text-lg font-bold leading-none text-nav-accent ring-1 ring-nav-accent/25 transition-transform duration-200 group-hover:-rotate-6">
+      <span
+        className="font-jp grid h-8 w-8 place-items-center rounded-lg bg-white text-lg font-bold leading-none text-nav-accent ring-1 ring-nav-accent/25 transition-transform duration-200 group-hover:-rotate-6"
+        lang="ja"
+        aria-hidden
+      >
         な
       </span>
       <span className="text-lg font-bold tracking-tight text-nav-ink">
@@ -65,6 +69,16 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const { count, total, hydrated } = useProgress();
+
+  // Escape dismisses the mobile menu, matching every other disclosure.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
 
   const linkClass = (href: string) =>
     `rounded-lg px-3 py-1.5 text-sm transition-colors ${

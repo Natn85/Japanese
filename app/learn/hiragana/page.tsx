@@ -1,7 +1,15 @@
 import React from "react";
+import type { Metadata } from "next";
 import KanaCard from "@/components/KanaCard";
+import LiteYouTube from "@/components/LiteYouTube";
 import MarkCompleteButton from "@/components/MarkCompleteButton";
 import { hiragana, rowOrder, groupByRow } from "@/data/hiragana";
+
+export const metadata: Metadata = {
+  title: "Hiragana",
+  description:
+    "Learn all 46 hiragana characters with audio, a video introduction, and the best free practice resources.",
+};
 
 const resources = [
   {
@@ -36,7 +44,7 @@ export default function HiraganaPage() {
         </p>
         <h1 className="text-4xl sm:text-5xl font-bold text-ink mb-4">
           Hiragana{" "}
-          <span className="font-jp text-ink-muted font-normal">ひらがな</span>
+          <span className="font-jp text-ink-muted font-normal" lang="ja">ひらがな</span>
         </h1>
         <p className="text-ink-muted text-base sm:text-lg leading-relaxed max-w-2xl">
           Hiragana is the foundational phonetic alphabet of the Japanese writing
@@ -88,15 +96,7 @@ export default function HiraganaPage() {
         <h2 className="text-xl font-semibold text-ink mb-4">
           Video Introduction
         </h2>
-        <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-border">
-          <iframe
-            src="https://www.youtube.com/embed/6p9Il_j0zjc"
-            title="Hiragana introduction video"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="absolute inset-0 w-full h-full"
-          />
-        </div>
+        <LiteYouTube id="6p9Il_j0zjc" title="Hiragana introduction video" />
       </section>
 
       {/* Resources */}

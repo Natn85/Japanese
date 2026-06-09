@@ -1,7 +1,15 @@
 import React from "react";
+import type { Metadata } from "next";
 import KanaCard from "@/components/KanaCard";
+import LiteYouTube from "@/components/LiteYouTube";
 import MarkCompleteButton from "@/components/MarkCompleteButton";
 import { katakana, rowOrder, groupByRow } from "@/data/katakana";
+
+export const metadata: Metadata = {
+  title: "Katakana",
+  description:
+    "Learn all 46 katakana characters with audio, a video introduction, and the best free practice resources.",
+};
 
 const resources = [
   {
@@ -36,12 +44,13 @@ export default function KatakanaPage() {
         </p>
         <h1 className="text-4xl sm:text-5xl font-bold text-ink mb-4">
           Katakana{" "}
-          <span className="font-jp text-ink-muted font-normal">カタカナ</span>
+          <span className="font-jp text-ink-muted font-normal" lang="ja">カタカナ</span>
         </h1>
         <p className="text-ink-muted text-base sm:text-lg leading-relaxed max-w-2xl">
           Katakana is the second phonetic alphabet of Japanese: the same 46
           sounds as hiragana, written in sharp, angular strokes. You&apos;ll see
-          it everywhere foreign words appear, from loanwords like コーヒー (coffee)
+          it everywhere foreign words appear, from loanwords like{" "}
+          <span className="font-jp" lang="ja">コーヒー</span> (coffee)
           to names, brands, scientific terms, and sound effects in manga. Because
           you already know the sounds from hiragana, this script is mostly about
           training your eye on a new set of shapes, so most learners get
@@ -88,15 +97,7 @@ export default function KatakanaPage() {
         <h2 className="text-xl font-semibold text-ink mb-4">
           Video Introduction
         </h2>
-        <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-border">
-          <iframe
-            src="https://www.youtube.com/embed/s6DKRgtVLGA"
-            title="Katakana introduction video"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="absolute inset-0 w-full h-full"
-          />
-        </div>
+        <LiteYouTube id="s6DKRgtVLGA" title="Katakana introduction video" />
       </section>
 
       {/* Resources */}

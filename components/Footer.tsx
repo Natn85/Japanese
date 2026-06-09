@@ -28,7 +28,12 @@ export default function Footer() {
         {/* Brand */}
         <div className="sm:col-span-2 md:col-span-2">
           <div className="flex items-center gap-2.5">
-            <span className="font-jp grid h-8 w-8 place-items-center rounded-lg bg-accent text-lg font-bold leading-none text-accent-on">
+            {/* Same white-tile lockup as the navbar so the brand reads as one mark. */}
+            <span
+              className="font-jp grid h-8 w-8 place-items-center rounded-lg bg-white text-lg font-bold leading-none text-accent ring-1 ring-accent/25"
+              lang="ja"
+              aria-hidden
+            >
               な
             </span>
             <span className="text-lg font-bold tracking-tight text-ink">
@@ -65,7 +70,7 @@ export default function Footer() {
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-6 text-sm text-ink-muted sm:flex-row">
           <p>© {new Date().getFullYear()} Japanara</p>
-          <p className="font-jp">日本語を、一文字ずつ。</p>
+          <p className="font-jp" lang="ja">日本語を、一文字ずつ。</p>
         </div>
       </div>
     </footer>

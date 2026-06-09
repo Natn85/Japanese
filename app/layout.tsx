@@ -14,7 +14,10 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Japanara: Learn Japanese, one character at a time",
+  title: {
+    default: "Japanara: Learn Japanese, one character at a time",
+    template: "%s · Japanara",
+  },
   description:
     "Guided lessons in hiragana, katakana, kanji, and grammar that make every step feel doable. Free, no account required.",
 };
@@ -65,8 +68,15 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body>
+        {/* Keyboard users can jump straight past the nav (WCAG 2.4.1). */}
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-xl focus:bg-accent focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-accent-on"
+        >
+          Skip to main content
+        </a>
         <Navbar />
-        <main>{children}</main>
+        <main id="main">{children}</main>
         <Footer />
       </body>
     </html>

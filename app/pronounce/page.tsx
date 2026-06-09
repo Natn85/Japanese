@@ -34,7 +34,7 @@ export default function PronouncePage() {
     <div className="mx-auto max-w-2xl px-4 py-12">
       {/* Header */}
       <section className="mb-8">
-        <p className="font-jp mb-2 text-sm font-medium text-accent">発音</p>
+        <p className="font-jp mb-2 text-sm font-medium text-accent" lang="ja">発音</p>
         <h1 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">
           Pronounce
         </h1>
@@ -62,6 +62,7 @@ export default function PronouncePage() {
               onChange={(e) => setText(e.target.value)}
               onKeyDown={onKeyDown}
               rows={4}
+              lang="ja"
               placeholder="ここに　にほんごを　かいてください…"
               className="font-jp w-full resize-y rounded-xl border border-border bg-bg p-4 text-xl leading-relaxed text-ink placeholder:text-ink-muted/60 focus:border-accent focus:outline-none"
             />
@@ -143,7 +144,7 @@ export default function PronouncePage() {
                   }}
                   className="group flex items-center gap-2 rounded-xl border border-border bg-surface px-4 py-2.5 transition-colors hover:border-accent hover:bg-surface-2"
                 >
-                  <span className="font-jp text-base text-ink group-hover:text-accent">
+                  <span className="font-jp text-base text-ink group-hover:text-accent" lang="ja">
                     {ex.jp}
                   </span>
                   <span className="text-xs text-ink-muted">{ex.en}</span>

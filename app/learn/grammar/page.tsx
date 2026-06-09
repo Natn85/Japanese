@@ -1,6 +1,14 @@
 import React from "react";
+import type { Metadata } from "next";
+import LiteYouTube from "@/components/LiteYouTube";
 import MarkCompleteButton from "@/components/MarkCompleteButton";
 import { particles } from "@/data/grammar";
+
+export const metadata: Metadata = {
+  title: "Grammar",
+  description:
+    "Japanese word order and the core particles, explained with a color-coded sentence map and real examples.",
+};
 
 const resources = [
   {
@@ -34,9 +42,9 @@ export default function GrammarPage() {
     <div className="mx-auto max-w-4xl space-y-16 px-4 py-12">
       {/* Header */}
       <section>
-        <p className="mb-3 text-sm font-medium text-accent">Writing System</p>
+        <p className="mb-3 text-sm font-medium text-accent">Sentence Structure</p>
         <h1 className="mb-4 text-4xl font-bold text-ink sm:text-5xl">
-          Grammar <span className="font-jp font-normal text-ink-muted">文法</span>
+          Grammar <span className="font-jp font-normal text-ink-muted" lang="ja">文法</span>
         </h1>
         <p className="max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg">
           Japanese grammar feels alien at first and then suddenly clicks. Two
@@ -63,7 +71,7 @@ export default function GrammarPage() {
           <div className="flex flex-wrap items-end gap-x-1 gap-y-4">
             {sentenceParts.map((p, i) => (
               <div key={i} className="flex flex-col items-center gap-1.5">
-                <span className={`font-jp text-2xl font-bold sm:text-3xl ${p.color}`}>
+                <span className={`font-jp text-2xl font-bold sm:text-3xl ${p.color}`} lang="ja">
                   {p.jp}
                 </span>
                 <span className="text-[11px] uppercase tracking-wide text-ink-muted">
@@ -96,14 +104,14 @@ export default function GrammarPage() {
               className="flex gap-4 rounded-xl border border-border bg-surface p-5"
             >
               <div className="flex shrink-0 flex-col items-center">
-                <span className="font-jp text-3xl font-bold leading-none text-accent">
+                <span className="font-jp text-3xl font-bold leading-none text-accent" lang="ja">
                   {p.particle}
                 </span>
                 <span className="mt-1 text-xs text-ink-muted">{p.romaji}</span>
               </div>
               <div className="min-w-0">
                 <p className="text-sm leading-relaxed text-ink">{p.role}</p>
-                <p className="font-jp mt-2 text-sm text-ink">{p.example}</p>
+                <p className="font-jp mt-2 text-sm text-ink" lang="ja">{p.example}</p>
                 <p className="text-xs text-ink-muted">
                   {p.exampleRomaji} · {p.exampleEn}
                 </p>
@@ -117,14 +125,15 @@ export default function GrammarPage() {
       <section>
         <div className="rounded-xl border border-border bg-surface p-5 sm:p-6">
           <h2 className="mb-2 text-base font-semibold text-ink">
-            です and ます: your polite default
+            <span className="font-jp" lang="ja">です</span> and{" "}
+            <span className="font-jp" lang="ja">ます</span>: your polite default
           </h2>
           <p className="text-sm leading-relaxed text-ink-muted">
             Japanese has casual and polite registers. As a beginner, stick with
             the polite forms:{" "}
-            <span className="font-jp text-ink">です</span> (desu) after nouns and
+            <span className="font-jp text-ink" lang="ja">です</span> (desu) after nouns and
             adjectives, and{" "}
-            <span className="font-jp text-ink">ます</span> (masu) endings on
+            <span className="font-jp text-ink" lang="ja">ます</span> (masu) endings on
             verbs. They&apos;re always safe with strangers, teachers, and
             shopkeepers, and they give your sentences a clean, predictable
             ending while everything else still feels new.
@@ -135,15 +144,7 @@ export default function GrammarPage() {
       {/* Video */}
       <section>
         <h2 className="mb-4 text-xl font-semibold text-ink">Video Introduction</h2>
-        <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-border">
-          <iframe
-            src="https://www.youtube.com/embed/o_EuKawOZAw"
-            title="Japanese grammar introduction video"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="absolute inset-0 h-full w-full"
-          />
-        </div>
+        <LiteYouTube id="o_EuKawOZAw" title="Japanese grammar introduction video" />
       </section>
 
       {/* Resources */}

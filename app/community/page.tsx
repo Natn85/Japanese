@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Community",
+  description:
+    "The best places to ask questions, find practice partners, and study Japanese alongside other learners.",
+};
+
 const groups = [
   {
     title: "Ask questions & get unstuck",
@@ -70,7 +78,7 @@ export default function CommunityPage() {
     <div className="mx-auto max-w-4xl space-y-14 px-4 py-12">
       {/* Header */}
       <section>
-        <p className="font-jp mb-3 text-sm font-medium text-accent">仲間</p>
+        <p className="font-jp mb-3 text-sm font-medium text-accent" lang="ja">仲間</p>
         <h1 className="mb-4 text-4xl font-bold text-ink sm:text-5xl">Community</h1>
         <p className="max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg">
           Japanara doesn&apos;t run its own forum, and that&apos;s on purpose:
@@ -84,7 +92,7 @@ export default function CommunityPage() {
         <section key={g.title}>
           <div className="mb-5 flex items-baseline gap-3">
             <h2 className="text-xl font-semibold text-ink">{g.title}</h2>
-            <span className="font-jp text-sm text-ink-muted">{g.jp}</span>
+            <span className="font-jp text-sm text-ink-muted" lang="ja">{g.jp}</span>
           </div>
           <p className="mb-5 max-w-2xl text-sm leading-relaxed text-ink-muted">
             {g.blurb}

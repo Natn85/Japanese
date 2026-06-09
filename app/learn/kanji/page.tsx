@@ -1,7 +1,15 @@
 import React from "react";
+import type { Metadata } from "next";
 import KanjiCard from "@/components/KanjiCard";
+import LiteYouTube from "@/components/LiteYouTube";
 import MarkCompleteButton from "@/components/MarkCompleteButton";
 import { kanji, groupOrder, groupByGroup } from "@/data/kanji";
+
+export const metadata: Metadata = {
+  title: "Kanji",
+  description:
+    "Build your first foothold in kanji: a beginner set of essential characters with meanings, readings, and trusted resources.",
+};
 
 const resources = [
   {
@@ -36,7 +44,7 @@ export default function KanjiPage() {
         </p>
         <h1 className="text-4xl sm:text-5xl font-bold text-ink mb-4">
           Kanji{" "}
-          <span className="font-jp text-ink-muted font-normal">漢字</span>
+          <span className="font-jp text-ink-muted font-normal" lang="ja">漢字</span>
         </h1>
         <p className="text-ink-muted text-base sm:text-lg leading-relaxed max-w-2xl">
           Kanji are the logographic characters borrowed from Chinese, where each
@@ -58,15 +66,17 @@ export default function KanjiPage() {
           </h2>
           <p className="text-ink-muted text-sm leading-relaxed">
             Most kanji have two kinds of reading. The{" "}
-            <span className="text-accent font-medium">on&apos;yomi</span> (音読み)
+            <span className="text-accent font-medium">on&apos;yomi</span> (
+            <span className="font-jp" lang="ja">音読み</span>)
             is the reading adapted from Chinese, usually shown in{" "}
-            <span className="font-jp text-ink">カタカナ</span> and used in
+            <span className="font-jp text-ink" lang="ja">カタカナ</span> and used in
             compound words. The{" "}
-            <span className="text-accent font-medium">kun&apos;yomi</span> (訓読み)
+            <span className="text-accent font-medium">kun&apos;yomi</span> (
+            <span className="font-jp" lang="ja">訓読み</span>)
             is the native Japanese reading, shown in{" "}
-            <span className="font-jp text-ink">ひらがな</span> and used when the
+            <span className="font-jp text-ink" lang="ja">ひらがな</span> and used when the
             kanji stands on its own. A trailing part in parentheses, like{" "}
-            <span className="font-jp text-ink">おお(きい)</span>, is okurigana, the
+            <span className="font-jp text-ink" lang="ja">おお(きい)</span>, is okurigana, the
             hiragana written after the kanji. Don&apos;t memorize every reading
             up front; they&apos;ll stick naturally as you meet real words.
           </p>
@@ -112,15 +122,7 @@ export default function KanjiPage() {
         <h2 className="text-xl font-semibold text-ink mb-4">
           Video Introduction
         </h2>
-        <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-border">
-          <iframe
-            src="https://www.youtube.com/embed/RKWrWRFyfYo"
-            title="Kanji introduction video"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="absolute inset-0 w-full h-full"
-          />
-        </div>
+        <LiteYouTube id="RKWrWRFyfYo" title="Kanji introduction video" />
       </section>
 
       {/* Resources */}

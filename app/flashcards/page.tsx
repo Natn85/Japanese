@@ -81,9 +81,14 @@ export default function FlashcardsPage() {
     setSeen(0);
   }, [base]);
 
-  // Keyboard: space/enter flips, arrows navigate.
+  // Keyboard: space/enter flips, arrows navigate. When focus is on a real
+  // control (deck buttons, Prev/Next, links) we stay out of the way so
+  // keyboard users can still activate it — Space there means "press this",
+  // not "flip the card".
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      const t = e.target as HTMLElement | null;
+      if (t?.closest("button, a, input, select, textarea")) return;
       if (e.key === " " || e.key === "Enter") {
         e.preventDefault();
         setFlipped((f) => !f);
@@ -101,7 +106,7 @@ export default function FlashcardsPage() {
     <div className="mx-auto max-w-2xl px-4 py-12">
       {/* Header */}
       <section className="mb-8 text-center">
-        <p className="font-jp mb-2 text-sm font-medium text-accent">練習</p>
+        <p className="font-jp mb-2 text-sm font-medium text-accent" lang="ja">練習</p>
         <h1 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">
           Flashcards
         </h1>
@@ -143,14 +148,14 @@ export default function FlashcardsPage() {
         >
           {/* Front — the character */}
           <span className="absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-3xl border border-border bg-surface [backface-visibility:hidden]">
-            <span className="font-jp text-8xl font-bold leading-none text-ink">
+            <span className="font-jp text-8xl font-bold leading-none text-ink" lang="ja">
               {card?.kana ?? "··"}
             </span>
             <span className="text-sm text-ink-muted">Tap or press Space to flip</span>
           </span>
           {/* Back — the reading */}
           <span className="absolute inset-0 flex flex-col items-center justify-center gap-2 rounded-3xl border border-accent/40 bg-accent-soft [backface-visibility:hidden] [transform:rotateY(180deg)]">
-            <span className="font-jp text-5xl font-bold leading-none text-accent">
+            <span className="font-jp text-5xl font-bold leading-none text-accent" lang="ja">
               {card?.kana}
             </span>
             <span className="text-4xl font-bold tracking-wide text-ink">

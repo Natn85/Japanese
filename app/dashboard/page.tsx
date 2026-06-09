@@ -41,7 +41,7 @@ export default function DashboardPage() {
     <div className="mx-auto max-w-5xl space-y-12 px-4 py-12">
       {/* Header */}
       <section>
-        <p className="font-jp mb-2 text-sm font-medium text-accent">進み具合</p>
+        <p className="font-jp mb-2 text-sm font-medium text-accent" lang="ja">進み具合</p>
         <h1 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">
           Your progress
         </h1>
@@ -82,7 +82,7 @@ export default function DashboardPage() {
                 href={nextUp.href}
                 className="mt-5 inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3 text-base font-semibold text-accent-on transition-colors hover:bg-accent-hover"
               >
-                <span className="font-jp">{nextUp.glyph}</span>
+                <span className="font-jp" lang="ja">{nextUp.glyph}</span>
                 Continue with {nextUp.label}
                 <span aria-hidden>→</span>
               </Link>
@@ -128,13 +128,14 @@ export default function DashboardPage() {
                         ? "bg-accent text-accent-on"
                         : "bg-surface-2 text-ink-muted group-hover:text-accent"
                     }`}
+                    lang="ja"
                   >
                     {l.glyph}
                   </span>
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
                       <h3 className="font-semibold text-ink">{l.label}</h3>
-                      <span className="font-jp text-sm text-ink-muted">{l.jp}</span>
+                      <span className="font-jp text-sm text-ink-muted" lang="ja">{l.jp}</span>
                     </div>
                     <p className="mt-0.5 truncate text-sm text-ink-muted">
                       {done ? "Completed · tap to review" : l.blurb}

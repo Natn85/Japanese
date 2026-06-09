@@ -102,6 +102,7 @@ export default function Home() {
           <motion.p
             variants={item}
             className="font-jp mb-5 text-sm font-medium tracking-wide text-page-accent"
+            lang="ja"
           >
             日本語を学ぼう
           </motion.p>
@@ -187,13 +188,13 @@ export default function Home() {
                       ✓ Done
                     </span>
                   )}
-                  <div className="font-jp text-4xl font-medium tracking-wide text-ink transition-colors duration-200 group-hover:text-page-accent sm:text-5xl">
+                  <div className="font-jp text-4xl font-medium tracking-wide text-ink transition-colors duration-200 group-hover:text-page-accent sm:text-5xl" lang="ja">
                     {glyphStrip[t.id]}
                   </div>
                   <div className="relative mt-6">
                     <div className="flex items-baseline gap-2">
                       <h3 className="text-lg font-semibold text-ink">{t.label}</h3>
-                      <span className="font-jp text-sm text-ink-muted">{t.jp}</span>
+                      <span className="font-jp text-sm text-ink-muted" lang="ja">{t.jp}</span>
                     </div>
                     <p className="mt-1 max-w-sm text-sm leading-relaxed text-ink-muted">
                       {t.blurb}
@@ -228,7 +229,7 @@ export default function Home() {
                   <span className="font-jp tabular-nums text-3xl font-bold text-page-accent/30">
                     {s.n}
                   </span>
-                  <span className="font-jp text-lg text-ink-muted">{s.jp}</span>
+                  <span className="font-jp text-lg text-ink-muted" lang="ja">{s.jp}</span>
                 </div>
                 <h3 className="mt-5 text-lg font-semibold text-ink">{s.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-muted">
@@ -242,7 +243,7 @@ export default function Home() {
 
       {/* ── Closing CTA ── */}
       <section className="mx-auto max-w-3xl px-4 py-24 text-center">
-        <p className="font-jp text-5xl text-page-accent/80 sm:text-6xl">はじめよう</p>
+        <p className="font-jp text-5xl text-page-accent/80 sm:text-6xl" lang="ja">はじめよう</p>
         <h2 className="mt-6 text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
           The first character is the hardest. Let&apos;s get past it together.
         </h2>
